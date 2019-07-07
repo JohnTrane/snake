@@ -119,7 +119,6 @@ public class Map extends JPanel implements ActionListener {
             dots++;
             createApple();
             count++;
-            increaseSpeed();
         }
     }
 
