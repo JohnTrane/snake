@@ -30,7 +30,7 @@ public class Map extends JPanel implements ActionListener {
     private boolean inGame = true;
     private int count = 0;
     private LinkedList<Character> moves = new LinkedList<>();
-
+    private char prevMove = 'r';
 
 
     private void setMoves(){
@@ -87,20 +87,25 @@ public class Map extends JPanel implements ActionListener {
     }
 
     private void move(){
+        char nextMove = moves.get(0);
         for (int i = dots; i > 0 ; i--) {
             x[i] = x[i-1];
             y[i] = y[i-1];
         }
-
-        if(moves.get(0) == 'l')
+        if((nextMove == 'l' && prevMove == 'r') || (nextMove == 'u' && prevMove == 'd') || (nextMove == 'r' && prevMove == 'l') || (nextMove == 'd' && prevMove == 'u')){
+            nextMove = prevMove;
+        }
+        if(nextMove == 'l')
             x[0] -= DOT_SIZE;
-        if(moves.get(0) == 'r')
+        if(nextMove == 'r')
             x[0] += DOT_SIZE;
-        if(moves.get(0) == 'u')
+        if(nextMove == 'u')
             y[0] -= DOT_SIZE;
-        if(moves.get(0) == 'd')
+        if(nextMove == 'd')
             y[0] += DOT_SIZE;
+        prevMove = moves.get(0);
         moves.set(0, moves.get(1));
+
     }
 
     private void checkApple() {
