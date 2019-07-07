@@ -27,7 +27,8 @@ public class Map extends JPanel implements ActionListener {
     private int count = 0;
     private LinkedList<Character> moves = new LinkedList<>();
     private char prevMove = 'r';
-
+    private Object[][] gameField = new Object[40][30];
+    private int time;
 
 
     public Map(){
@@ -49,6 +50,7 @@ public class Map extends JPanel implements ActionListener {
         moves.add('r');
         moves.add('r');
         timer.start();
+        time = timer.getDelay();
         createApple();
     }
 
@@ -69,6 +71,7 @@ public class Map extends JPanel implements ActionListener {
         super.paintComponent(g);
         if(inGame){
             g.drawString("Score: " + count, 0, 16);
+            g.drawString("time is : " + time , 0, 32);
             g.drawImage(apple, appleX, appleY, this);
             for (int i = 0; i < dots; i++) {
                 g.drawImage(dot,x[i],y[i],this);
@@ -116,7 +119,13 @@ public class Map extends JPanel implements ActionListener {
             dots++;
             createApple();
             count++;
+            increaseSpeed();
         }
+    }
+
+    private void increaseSpeed(){
+        timer.setDelay(timer.getDelay()/2);
+        time = timer.getDelay();
     }
 
     private void checkCollisions(){
@@ -148,6 +157,8 @@ public class Map extends JPanel implements ActionListener {
         inGame = true;
         count = 0;
         initGame();
+        timer.setDelay(800);
+        time = 800;
     }
 
     class MapKeyListener extends KeyAdapter{
@@ -175,6 +186,8 @@ public class Map extends JPanel implements ActionListener {
             if(key == KeyEvent.VK_R){
                 restart();
             }
+            if(key == KeyEvent.VK_I)
+                increaseSpeed();
         }
     }
 }
