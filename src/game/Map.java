@@ -22,12 +22,18 @@ public class Map extends JPanel implements ActionListener {
     private int[] y = new int[ALL_DOTS];
     private int dots;
     private Timer timer;
+    private boolean up = false;
+    private boolean down = false;
     private boolean left = false;
     private boolean right = true;
-    private boolean down = false;
-    private boolean up = false;
+    private boolean pressedUp = false;
+    private boolean pressedDown = false;
+    private boolean pressedLeft = false;
+    private boolean pressedRight = false;
     private boolean inGame = true;
+    private boolean isPause = false;
     private int count = 0;
+    private int[] moves = {3, 3};
 
 
 
@@ -46,9 +52,36 @@ public class Map extends JPanel implements ActionListener {
             y[i] = 96;
         }
         if(timer == null)
-            timer = new Timer(150, this);
+            timer = new Timer(400, this);
         timer.start();
         createApple();
+    }
+
+    private void direction(){
+        if (pressedUp) {
+            up = true;
+            down = false;
+            left = false;
+            right = false;
+        }
+        if(pressedDown){
+            down = true;
+            up = false;
+            left = false;
+            right = false;
+        }
+        if(pressedLeft){
+            left = true;
+            up = false;
+            down = false;
+            right = false;
+        }
+        if(pressedRight){
+            right = true;
+            up = false;
+            down = false;
+            left = false;
+        }
     }
 
     public void createApple(){
@@ -73,8 +106,8 @@ public class Map extends JPanel implements ActionListener {
                 g.drawImage(dot,x[i],y[i],this);
             }
         } else{
-            String str = "Game Over";
-            g.drawString(str + "Score: " + count, 200, 200);
+            String str = "Game Over ";
+            g.drawString(str + "\n Your score: " + count, 200, 200);
         }
     }
 
@@ -83,13 +116,13 @@ public class Map extends JPanel implements ActionListener {
             x[i] = x[i-1];
             y[i] = y[i-1];
         }
-        if(left)
+        if(moves[0] == 2)
             x[0] -= DOT_SIZE;
-        if(right)
+        if(moves[0] == 3)
             x[0] += DOT_SIZE;
-        if(up)
+        if(moves[0] == 0)
             y[0] -= DOT_SIZE;
-        if(down)
+        if(moves[0] == 1)
             y[0] += DOT_SIZE;
     }
 
@@ -120,7 +153,9 @@ public class Map extends JPanel implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if(inGame){
             checkApple();
+            direction();
             move();
+            turns();
             checkCollisions();
         }
         repaint();
@@ -136,6 +171,24 @@ public class Map extends JPanel implements ActionListener {
         initGame();
     }
 
+    private void pause(){
+        if(isPause) {
+            timer.start();
+            isPause = false;
+        }
+        else {
+            timer.stop();
+            isPause = true;
+        }
+
+    }
+
+    private void turns(){
+        moves[0] = moves[1];
+    }
+
+
+
     class MapKeyListener extends KeyAdapter{
 
         @Override
@@ -143,27 +196,36 @@ public class Map extends JPanel implements ActionListener {
             super.keyPressed(e);
             int key = e.getKeyCode();
             if(key == KeyEvent.VK_LEFT && !right) {
-                left = true;
-                up = false;
-                down = false;
+                pressedLeft = true;
+                moves[1] = 2;
+                pressedUp = false;
+                pressedDown = false;
             }
             if(key == KeyEvent.VK_RIGHT && !left) {
-                right = true;
-                up = false;
-                down = false;
+                pressedRight = true;
+                moves[1] = 3;
+                pressedUp = false;
+                pressedDown = false;
             }
             if(key == KeyEvent.VK_DOWN && !up){
-                down = true;
-                right = false;
-                left = false;
+                pressedDown = true;
+                moves[1] = 1;
+                pressedRight = false;
+                pressedLeft = false;
             }
             if(key == KeyEvent.VK_UP && !down){
-                up = true;
-                left = false;
-                right = false;
+                pressedUp = true;
+                moves[1] = 0;
+                pressedLeft = false;
+                pressedRight = false;
             }
-            if(key == KeyEvent.VK_R){
+            if(key == KeyEvent.VK_R || key == KeyEvent.VK_SPACE){
                 restart();
+            }
+
+
+            if(key == KeyEvent.VK_P) {
+                pause();
             }
         }
     }
