@@ -23,19 +23,12 @@ public class Map extends JPanel implements ActionListener {
     private int[] y = new int[ALL_DOTS];
     private int dots;
     private Timer timer;
-    private boolean left = false;
-    private boolean right = true;
-    private boolean down = false;
-    private boolean up = false;
     private boolean inGame = true;
     private int count = 0;
     private LinkedList<Character> moves = new LinkedList<>();
     private char prevMove = 'r';
 
 
-    private void setMoves(){
-
-    }
 
     public Map(){
         setBackground(Color.pink);
@@ -153,10 +146,6 @@ public class Map extends JPanel implements ActionListener {
 
     private void restart(){
         inGame = true;
-        left = false;
-        up = false;
-        down = false;
-        right = true;
         count = 0;
         initGame();
     }
@@ -168,30 +157,18 @@ public class Map extends JPanel implements ActionListener {
             super.keyPressed(e);
             int key = e.getKeyCode();
             if(key == KeyEvent.VK_LEFT) {
-                left = true;
-                up = false;
-                down = false;
                 moves.set(0, moves.get(1));
                 moves.set(1, 'l');
             }
             if(key == KeyEvent.VK_RIGHT) {
-                right = true;
-                up = false;
-                down = false;
                 moves.set(0, moves.get(1));
                 moves.set(1, 'r');
             }
             if(key == KeyEvent.VK_DOWN){
-                down = true;
-                right = false;
-                left = false;
                 moves.set(0, moves.get(1));
                 moves.set(1, 'd');
             }
             if(key == KeyEvent.VK_UP){
-                up = true;
-                left = false;
-                right = false;
                 moves.set(0, moves.get(1));
                 moves.set(1, 'u');
             }
