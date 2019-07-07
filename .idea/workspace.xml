@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="718c9343-c7ac-4300-8865-7c6fb226ee6b" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/snake/game/Map.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/snake/game/Map.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/game/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/game/Map.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -28,8 +26,8 @@
       <file leaf-file-name="Map.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/game/Map.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-686">
-              <caret line="124" column="24" selection-start-line="124" selection-start-column="24" selection-end-line="124" selection-end-column="24" />
+            <state relative-caret-position="2213">
+              <caret line="220" column="29" selection-start-line="220" selection-start-column="29" selection-end-line="220" selection-end-column="29" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#4440#4441#0" expanded="true" />
@@ -228,12 +226,12 @@
       <window_info anchor="right" id="Capture Analysis" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="right" id="Maven Projects" />
-      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.1631285" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.1631285" />
       <window_info anchor="bottom" id="Version Control" />
       <window_info anchor="bottom" id="Terminal" />
       <window_info id="Capture Tool" />
       <window_info id="Designer" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32960895" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -296,8 +294,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/game/Map.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-686">
-          <caret line="124" column="24" selection-start-line="124" selection-start-column="24" selection-end-line="124" selection-end-column="24" />
+        <state relative-caret-position="2213">
+          <caret line="220" column="29" selection-start-line="220" selection-start-column="29" selection-end-line="220" selection-end-column="29" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#4440#4441#0" expanded="true" />

@@ -52,8 +52,7 @@ public class Map extends JPanel implements ActionListener {
             y[i] = 96;
         }
         if(timer == null)
-            timer = new Timer(400, this);
-        timer.start();
+            new Timer(1820, this).start();
         createApple();
     }
 
@@ -183,7 +182,7 @@ public class Map extends JPanel implements ActionListener {
 
     }
 
-    private void turns(){
+    private void turns(){ // Попытки сделать память в 2 moves
         moves[0] = moves[1];
     }
 
@@ -197,24 +196,28 @@ public class Map extends JPanel implements ActionListener {
             int key = e.getKeyCode();
             if(key == KeyEvent.VK_LEFT && !right) {
                 pressedLeft = true;
+                turns();
                 moves[1] = 2;
                 pressedUp = false;
                 pressedDown = false;
             }
             if(key == KeyEvent.VK_RIGHT && !left) {
                 pressedRight = true;
+                turns();
                 moves[1] = 3;
                 pressedUp = false;
                 pressedDown = false;
             }
             if(key == KeyEvent.VK_DOWN && !up){
                 pressedDown = true;
+                turns();
                 moves[1] = 1;
                 pressedRight = false;
                 pressedLeft = false;
             }
             if(key == KeyEvent.VK_UP && !down){
                 pressedUp = true;
+                turns();
                 moves[1] = 0;
                 pressedLeft = false;
                 pressedRight = false;
