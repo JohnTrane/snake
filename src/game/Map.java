@@ -92,20 +92,30 @@ public class Map extends JPanel implements ActionListener {
             x[i] = x[i-1];
             y[i] = y[i-1];
         }
-        if((nextMove == 'l' && prevMove == 'r') || (nextMove == 'u' && prevMove == 'd') || (nextMove == 'r' && prevMove == 'l') || (nextMove == 'd' && prevMove == 'u')){
-            nextMove = prevMove;
-        }
-        if(nextMove == 'l')
-            x[0] -= DOT_SIZE;
-        if(nextMove == 'r')
+        if(nextMove == 'l' && prevMove == 'r'){
             x[0] += DOT_SIZE;
-        if(nextMove == 'u')
-            y[0] -= DOT_SIZE;
-        if(nextMove == 'd')
+        }
+        else if(nextMove == 'u' && prevMove == 'd'){
             y[0] += DOT_SIZE;
-        prevMove = moves.get(0);
-        moves.set(0, moves.get(1));
-
+        }
+        else if(nextMove == 'r' && prevMove == 'l'){
+            x[0] -= DOT_SIZE;
+        }
+        else if (nextMove == 'd' && prevMove == 'u'){
+            y[0] -= DOT_SIZE;
+        }
+        else {
+            if (nextMove == 'l')
+                x[0] -= DOT_SIZE;
+            if (nextMove == 'r')
+                x[0] += DOT_SIZE;
+            if (nextMove == 'u')
+                y[0] -= DOT_SIZE;
+            if (nextMove == 'd')
+                y[0] += DOT_SIZE;
+            prevMove = moves.get(0);
+            moves.set(0, moves.get(1));
+        }
     }
 
     private void checkApple() {
