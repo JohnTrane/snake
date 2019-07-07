@@ -39,11 +39,7 @@
         <entry file="file://$PROJECT_DIR$/src/game/Test.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="85">
-              <caret line="5" column="49" lean-forward="true" selection-start-line="5" selection-start-column="49" selection-end-line="5" selection-end-column="49" />
-              <folding>
-                <element signature="e#55#56#0" expanded="true" />
-                <element signature="e#91#92#0" expanded="true" />
-              </folding>
+              <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
             </state>
           </provider>
         </entry>
@@ -288,11 +284,7 @@
     <entry file="file://$PROJECT_DIR$/src/game/Test.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
-          <caret line="5" column="49" lean-forward="true" selection-start-line="5" selection-start-column="49" selection-end-line="5" selection-end-column="49" />
-          <folding>
-            <element signature="e#55#56#0" expanded="true" />
-            <element signature="e#91#92#0" expanded="true" />
-          </folding>
+          <caret line="5" column="25" selection-start-line="5" selection-start-column="25" selection-end-line="5" selection-end-column="25" />
         </state>
       </provider>
     </entry>
