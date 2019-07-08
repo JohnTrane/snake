@@ -60,10 +60,10 @@ public class Map extends JPanel implements ActionListener {
     }
 
     public void loadImages(){
-        ImageIcon iia = new ImageIcon("resources/apple.png");
-        apple = iia.getImage();
-        ImageIcon iid = new ImageIcon("resources/dot.png");
-        dot = iid.getImage();
+        ImageIcon appleImg = new ImageIcon("resources/apple.png");
+        apple = appleImg.getImage();
+        ImageIcon dotImg = new ImageIcon("resources/dot.png");
+        dot = dotImg.getImage();
     }
 
     @Override
