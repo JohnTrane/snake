@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Random;
 
@@ -154,7 +155,7 @@ public class GameMap extends JPanel implements ActionListener {
 
     private void checkCollisions(){
         for (int i = dots; i > 0; i--) {
-            if(i>4 && x[0] == x[i] && y[0] == y[i])
+            if(count > 1 && x[0] == x[i] && y[0] == y[i])
                 inGame = false;
         }
         if(x[0] > SIZEX)
