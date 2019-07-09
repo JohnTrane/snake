@@ -9,7 +9,7 @@ public class MainWindow extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(656, 532);
         setLocation(400, 400);
-        add(new Map());
+        add(new GameMap());
         setVisible(true);
     }
 

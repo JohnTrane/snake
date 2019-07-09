@@ -9,7 +9,7 @@ import java.awt.event.KeyEvent;
 import java.util.LinkedList;
 import java.util.Random;
 
-public class Map extends JPanel implements ActionListener {
+public class GameMap extends JPanel implements ActionListener {
 
     private final int SIZEX = 640;
     private final int SIZEY = 480;
@@ -29,9 +29,10 @@ public class Map extends JPanel implements ActionListener {
     private char prevMove = 'r';
     private Object[][] gameField = new Object[40][30];
     private int time;
+    private boolean isButtonPressed = false;
 
 
-    public Map(){
+    public GameMap(){
         setBackground(Color.pink);
         loadImages();
         initGame();
@@ -39,7 +40,7 @@ public class Map extends JPanel implements ActionListener {
         setFocusable(true);
     }
 
-    public void initGame(){
+    private void initGame(){
         dots = 3;
         for (int i = 0; i < dots; i++) {
             x[i] = 96 - i*DOT_SIZE;
@@ -52,7 +53,10 @@ public class Map extends JPanel implements ActionListener {
         timer.start();
         time = timer.getDelay();
         createApple();
+        prevMove = 'r';
+        isButtonPressed = false;
     }
+
 
     public void createApple(){
         appleX = new Random().nextInt(40)*DOT_SIZE;
@@ -83,7 +87,18 @@ public class Map extends JPanel implements ActionListener {
     }
 
     private void move(){
-        char nextMove = moves.get(0);
+        char nextMove;
+        boolean isCheck = false;
+
+        if(isButtonPressed)
+            nextMove = moves.get(1);
+        else {
+            nextMove = moves.get(0);
+            isCheck = true;
+        }
+
+        isButtonPressed = false;
+
         for (int i = dots; i > 0 ; i--) {
             x[i] = x[i-1];
             y[i] = y[i-1];
@@ -109,8 +124,13 @@ public class Map extends JPanel implements ActionListener {
                 y[0] -= DOT_SIZE;
             if (nextMove == 'd')
                 y[0] += DOT_SIZE;
-            prevMove = moves.get(0);
+            if(isCheck) {
+                prevMove = moves.get(0);
+            }else{
+                prevMove = moves.get(1);
+            }
             moves.set(0, moves.get(1));
+
         }
     }
 
@@ -124,6 +144,11 @@ public class Map extends JPanel implements ActionListener {
 
     private void increaseSpeed(){
         timer.setDelay(timer.getDelay()/2);
+        time = timer.getDelay();
+    }
+
+    private void decreaseSpeed(){
+        timer.setDelay(timer.getDelay()*2);
         time = timer.getDelay();
     }
 
@@ -166,27 +191,32 @@ public class Map extends JPanel implements ActionListener {
         public void keyPressed(KeyEvent e) {
             super.keyPressed(e);
             int key = e.getKeyCode();
-            if(key == KeyEvent.VK_LEFT) {
-                moves.set(0, moves.get(1));
-                moves.set(1, 'l');
-            }
-            if(key == KeyEvent.VK_RIGHT) {
-                moves.set(0, moves.get(1));
-                moves.set(1, 'r');
-            }
-            if(key == KeyEvent.VK_DOWN){
-                moves.set(0, moves.get(1));
-                moves.set(1, 'd');
-            }
-            if(key == KeyEvent.VK_UP){
-                moves.set(0, moves.get(1));
-                moves.set(1, 'u');
-            }
-            if(key == KeyEvent.VK_R){
-                restart();
+            {
+                isButtonPressed = !isButtonPressed;
+                if (key == KeyEvent.VK_LEFT) {
+                    moves.set(0, moves.get(1));
+                    moves.set(1, 'l');
+                }
+                if (key == KeyEvent.VK_RIGHT) {
+                    moves.set(0, moves.get(1));
+                    moves.set(1, 'r');
+                }
+                if (key == KeyEvent.VK_DOWN) {
+                    moves.set(0, moves.get(1));
+                    moves.set(1, 'd');
+                }
+                if (key == KeyEvent.VK_UP) {
+                    moves.set(0, moves.get(1));
+                    moves.set(1, 'u');
+                }
+                if (key == KeyEvent.VK_R) {
+                    restart();
+                }
             }
             if(key == KeyEvent.VK_I)
                 increaseSpeed();
+            if(key == KeyEvent.VK_J)
+                decreaseSpeed();
         }
     }
 }
