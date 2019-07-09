@@ -15,6 +15,7 @@ public class GameMap extends JPanel implements ActionListener {
     private final int SIZEY = 480;
     private final int DOT_SIZE = 16;
     private final int ALL_DOTS = 1200;
+    private final int DEFAULT_TIME = 200;
     private Image dot;
     private Image apple;
     private int appleX;
@@ -28,7 +29,7 @@ public class GameMap extends JPanel implements ActionListener {
     private LinkedList<Character> moves = new LinkedList<>();
     private char prevMove = 'r';
     private Object[][] gameField = new Object[40][30];
-    private int time;
+    private int time = 200;
     private boolean isButtonPressed = false;
 
 
@@ -47,14 +48,13 @@ public class GameMap extends JPanel implements ActionListener {
             y[i] = 96;
         }
         if(timer == null)
-            timer = new Timer(800, this);
+            timer = new Timer(DEFAULT_TIME, this);
         moves.add('r');
         moves.add('r');
         timer.start();
         time = timer.getDelay();
         createApple();
-        prevMove = 'r';
-        isButtonPressed = false;
+        //isButtonPressed = false;
     }
 
 
@@ -181,8 +181,8 @@ public class GameMap extends JPanel implements ActionListener {
         inGame = true;
         count = 0;
         initGame();
-        timer.setDelay(800);
-        time = 800;
+        timer.setDelay(DEFAULT_TIME);
+        time = DEFAULT_TIME;
     }
 
     class MapKeyListener extends KeyAdapter{
@@ -213,9 +213,9 @@ public class GameMap extends JPanel implements ActionListener {
                     restart();
                 }
             }
-            if(key == KeyEvent.VK_I)
+            if(key == KeyEvent.VK_SHIFT)
                 increaseSpeed();
-            if(key == KeyEvent.VK_J)
+            if(key == KeyEvent.VK_CONTROL)
                 decreaseSpeed();
         }
     }
